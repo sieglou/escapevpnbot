@@ -37,22 +37,22 @@ async def connect_vpn_handler(callback: CallbackQuery):
 
 📋 <b>Инструкция по подключению:</b>
 
-1️⃣ Скачайте приложение YouVPN
+1️⃣ Скачайте приложение Escape!
 2️⃣ Войдите в аккаунт используя ваш Telegram ID
 3️⃣ Выберите сервер и нажмите "Подключиться"
 
 📱 <b>Приложения:</b>
-• iOS: App Store → YouVPN
-• Android: Google Play → YouVPN  
-• Windows: youvpn.com/download
-• macOS: youvpn.com/download
+• iOS: App Store → Escape!
+• Android: Google Play → Escape!  
+• Windows: escape.ct.ws/download
+• macOS: escape.ct.ws/download
 
 🔧 <b>Настройки подключения:</b>
 • Ваш ID: <code>{user_id}</code>
 • Протокол: WireGuard/OpenVPN
 • Автоподключение: Включено
 
-❓ Нужна помощь? Обратитесь в поддержку: @youvpn_support
+❓ Нужна помощь? Обратитесь в поддержку: @sicsemperproteus
             """.format(user_id=callback.from_user.id)
         else:
             # У пользователя нет активной подписки
