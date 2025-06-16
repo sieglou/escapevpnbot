@@ -31,7 +31,7 @@ def get_main_menu_keyboard() -> InlineKeyboardMarkup:
         ],
         [
             InlineKeyboardButton(
-                text="🚀 о YouVPN",
+                text="🚀 Об Escape!",
                 callback_data="about"
             )
         ],
