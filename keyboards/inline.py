@@ -61,28 +61,30 @@ def get_subscription_keyboard() -> InlineKeyboardMarkup:
     """
     Клавиатура выбора подписки
     """
+    currency_symbol = "⭐" if config.USE_TELEGRAM_STARS else "₽"
+    
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [
             InlineKeyboardButton(
-                text=f"💎 1 месяц - {config.SUBSCRIPTION_PRICES['1_month']['price']}₽",
+                text=f"💎 1 месяц - {config.SUBSCRIPTION_PRICES['1_month']['price']}{currency_symbol}",
                 callback_data="buy_1_month"
             )
         ],
         [
             InlineKeyboardButton(
-                text=f"💎 3 месяца - {config.SUBSCRIPTION_PRICES['3_months']['price']}₽ (скидка 20%)",
+                text=f"💎 3 месяца - {config.SUBSCRIPTION_PRICES['3_months']['price']}{currency_symbol} (скидка 20%)",
                 callback_data="buy_3_months"
             )
         ],
         [
             InlineKeyboardButton(
-                text=f"💎 6 месяцев - {config.SUBSCRIPTION_PRICES['6_months']['price']}₽ (скидка 33%)",
+                text=f"💎 6 месяцев - {config.SUBSCRIPTION_PRICES['6_months']['price']}{currency_symbol} (скидка 33%)",
                 callback_data="buy_6_months"
             )
         ],
         [
             InlineKeyboardButton(
-                text=f"💎 12 месяцев - {config.SUBSCRIPTION_PRICES['12_months']['price']}₽ (скидка 42%)",
+                text=f"💎 12 месяцев - {config.SUBSCRIPTION_PRICES['12_months']['price']}{currency_symbol} (скидка 42%)",
                 callback_data="buy_12_months"
             )
         ],

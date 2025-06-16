@@ -25,12 +25,14 @@ async def send_payment_success_notification(bot: Bot, user_id: int,
         days = config.SUBSCRIPTION_PRICES[subscription_type]["days"]
         price = config.SUBSCRIPTION_PRICES[subscription_type]["price"]
         
+        currency_symbol = "⭐" if config.USE_TELEGRAM_STARS else "₽"
+        
         success_text = f"""
 ✅ <b>Платеж успешно обработан!</b>
 
 💎 <b>Подписка активирована:</b>
 • Тариф: {config.SUBSCRIPTION_PRICES[subscription_type]["title"]}
-• Сумма: {price}₽
+• Сумма: {price}{currency_symbol}
 • Действует до: {expire_at.strftime("%d.%m.%Y %H:%M")}
 • Дней: {days}
 

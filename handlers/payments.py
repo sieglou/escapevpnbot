@@ -143,24 +143,36 @@ async def buy_subscription_handler(callback: CallbackQuery, state: FSMContext):
         await state.update_data(subscription_type=subscription_type)
         await state.set_state(PaymentStates.waiting_for_payment)
         
-        # Создаем счет для оплаты
-        prices = [
-            LabeledPrice(
-                label=price_info["title"],
-                amount=price_info["price"] * 100  # Telegram требует сумму в копейках
+        if config.USE_TELEGRAM_STARS:
+            # Для Telegram Stars используем другой подход
+            await callback.message.answer_invoice(
+                title=f"YouVPN - {price_info['title']}",
+                description=f"Подписка YouVPN на {price_info['days']} дней\n"
+                           f"Безлимитный трафик, высокая скорость, серверы в 50+ странах",
+                payload=f"subscription_{subscription_type}_{callback.from_user.id}",
+                currency="XTR",  # Telegram Stars
+                prices=[LabeledPrice(label=price_info["title"], amount=price_info["price"])],
+                start_parameter="subscription"
             )
-        ]
-        
-        await callback.message.answer_invoice(
-            title=f"YouVPN - {price_info['title']}",
-            description=f"Подписка YouVPN на {price_info['days']} дней\n"
-                       f"Безлимитный трафик, высокая скорость, серверы в 50+ странах",
-            provider_token=config.PAYMENT_TOKEN,
-            currency=config.CURRENCY,
-            prices=prices,
-            start_parameter="subscription",
-            payload=f"subscription_{subscription_type}_{callback.from_user.id}"
-        )
+        else:
+            # Обычные платежи через провайдера
+            prices = [
+                LabeledPrice(
+                    label=price_info["title"],
+                    amount=price_info["price"] * 100  # Telegram требует сумму в копейках
+                )
+            ]
+            
+            await callback.message.answer_invoice(
+                title=f"YouVPN - {price_info['title']}",
+                description=f"Подписка YouVPN на {price_info['days']} дней\n"
+                           f"Безлимитный трафик, высокая скорость, серверы в 50+ странах",
+                provider_token=config.PAYMENT_TOKEN,
+                currency=config.CURRENCY,
+                prices=prices,
+                start_parameter="subscription",
+                payload=f"subscription_{subscription_type}_{callback.from_user.id}"
+            )
         
         await callback.answer()
         
@@ -196,7 +208,11 @@ async def pre_checkout_handler(pre_checkout_query: PreCheckoutQuery):
             return
         
         # Проверяем соответствие суммы
-        expected_amount = config.SUBSCRIPTION_PRICES[subscription_type]["price"] * 100
+        if config.USE_TELEGRAM_STARS:
+            expected_amount = config.SUBSCRIPTION_PRICES[subscription_type]["price"]
+        else:
+            expected_amount = config.SUBSCRIPTION_PRICES[subscription_type]["price"] * 100
+            
         if pre_checkout_query.total_amount != expected_amount:
             await pre_checkout_query.answer(ok=False, error_message="Неверная сумма платежа")
             return
@@ -241,12 +257,17 @@ async def successful_payment_handler(message: Message, state: FSMContext):
         )
         
         # Записываем информацию о платеже
+        if config.USE_TELEGRAM_STARS:
+            amount = payment.total_amount  # Stars уже в правильном формате
+        else:
+            amount = payment.total_amount / 100  # Переводим из копеек в рубли
+            
         await create_payment_record(
             user_id=user_id,
-            amount=payment.total_amount / 100,  # Переводим из копеек в рубли
+            amount=amount,
             currency=payment.currency,
             telegram_payment_charge_id=payment.telegram_payment_charge_id,
-            provider_payment_charge_id=payment.provider_payment_charge_id,
+            provider_payment_charge_id=payment.provider_payment_charge_id or "",
             subscription_type=subscription_type
         )
         

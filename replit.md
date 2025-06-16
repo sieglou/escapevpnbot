@@ -121,6 +121,7 @@ The application uses Supabase with the following main tables:
 ```
 Changelog:
 - June 16, 2025. Initial setup
+- June 16, 2025. Added Telegram Stars payment support as alternative to traditional payments
 ```
 
 ## User Preferences
