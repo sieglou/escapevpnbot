@@ -31,16 +31,20 @@ async def init_database():
     try:
         supabase = get_supabase_client()
         
-        # Проверяем подключение
-        result = supabase.table("users").select("count", count="exact").execute()
-        logger.info(f"Подключение к Supabase успешно. Пользователей в БД: {result.count}")
+        # Проверяем подключение к базе данных
+        try:
+            result = supabase.table("users").select("count", count="exact").execute()
+            logger.info(f"Подключение к Supabase успешно. Пользователей в БД: {result.count}")
+        except Exception as table_error:
+            logger.warning(f"Таблица users не существует: {table_error}")
+            logger.info("Создайте таблицы в Supabase Dashboard используя database_setup.sql")
         
-        # Создаем таблицы, если они не существуют (через SQL)
-        await create_tables_if_not_exist()
+        logger.info("Инициализация базы данных завершена")
         
     except Exception as e:
         logger.error(f"Ошибка при инициализации базы данных: {e}")
-        raise
+        # Не прерываем работу бота, если таблицы не созданы
+        logger.warning("Бот запустится, но для полной работы нужно создать таблицы в Supabase")
 
 
 async def create_tables_if_not_exist():
