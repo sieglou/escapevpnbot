@@ -145,8 +145,8 @@ async def buy_subscription_handler(callback: CallbackQuery, state: FSMContext):
         if config.USE_TELEGRAM_STARS:
             # Для Telegram Stars используем другой подход
             await callback.message.answer_invoice(
-                title=f"YouVPN - {price_info['title']}",
-                description=f"Подписка YouVPN на {price_info['days']} дней\n"
+                title=f"Escape! - {price_info['title']}",
+                description=f"Подписка Escape! на {price_info['days']} дней\n"
                            f"Безлимитный трафик, высокая скорость, серверы в 50+ странах",
                 payload=f"subscription_{subscription_type}_{callback.from_user.id}",
                 currency="XTR",  # Telegram Stars
@@ -163,8 +163,8 @@ async def buy_subscription_handler(callback: CallbackQuery, state: FSMContext):
             ]
             
             await callback.message.answer_invoice(
-                title=f"YouVPN - {price_info['title']}",
-                description=f"Подписка YouVPN на {price_info['days']} дней\n"
+                title=f"Escape! - {price_info['title']}",
+                description=f"Подписка Escape! на {price_info['days']} дней\n"
                            f"Безлимитный трафик, высокая скорость, серверы в 50+ странах",
                 provider_token=config.PAYMENT_TOKEN,
                 currency=config.CURRENCY,

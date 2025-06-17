@@ -12,7 +12,7 @@ from aiogram.enums import ParseMode
 from aiogram.fsm.storage.memory import MemoryStorage
 
 from config import Config
-from handlers import start, payments, menu, referral
+from handlers import start, payments, menu
 from utils.database import init_database
 from utils.notifications import start_notification_scheduler
 
@@ -47,7 +47,6 @@ async def main():
     dp.include_router(start.router)
     dp.include_router(payments.router)
     dp.include_router(menu.router)
-    dp.include_router(referral.router)
     
     # Запуск планировщика уведомлений
     asyncio.create_task(start_notification_scheduler(bot))
