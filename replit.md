@@ -126,7 +126,9 @@ Changelog:
 - June 17, 2025. Migration from Replit Agent to standard Replit environment completed
 - June 17, 2025. Updated VPN connection flow with integrated subscription plan selection
 - June 17, 2025. Implemented new pricing structure (125-1300 Stars) with 2-month plan addition
-- June 17, 2025. Simplified UI design for better user experience
+- June 17, 2025. Complete UI redesign: removed excessive emojis, professional styling, replaced YouVPN with Escape!
+- June 17, 2025. Removed referral system completely per user requirements
+- June 17, 2025. Optimized interface for mature, premium appearance
 ```
 
 ## User Preferences
