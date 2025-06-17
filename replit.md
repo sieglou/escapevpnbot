@@ -123,6 +123,10 @@ The application uses Supabase with the following main tables:
 Changelog:
 - June 16, 2025. Initial setup
 - June 16, 2025. Added Telegram Stars payment support as alternative to traditional payments
+- June 17, 2025. Migration from Replit Agent to standard Replit environment completed
+- June 17, 2025. Updated VPN connection flow with integrated subscription plan selection
+- June 17, 2025. Implemented new pricing structure (125-1300 Stars) with 2-month plan addition
+- June 17, 2025. Simplified UI design for better user experience
 ```
 
 ## User Preferences
