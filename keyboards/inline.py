@@ -13,43 +13,33 @@ def get_main_menu_keyboard() -> InlineKeyboardMarkup:
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [
             InlineKeyboardButton(
-                text="⚙️ Подключить VPN",
+                text="Подключить VPN",
                 callback_data="connect_vpn"
             )
         ],
         [
             InlineKeyboardButton(
-                text="💥 Продлить",
+                text="Купить подписку",
                 callback_data="extend"
             )
         ],
         [
             InlineKeyboardButton(
-                text="👥 Пригласить",
-                callback_data="invite"
-            )
-        ],
-        [
-            InlineKeyboardButton(
-                text="🚀 Об Escape!",
+                text="О сервисе",
                 callback_data="about"
-            )
-        ],
-        [
+            ),
             InlineKeyboardButton(
-                text="❓ Помощь",
+                text="Поддержка",
                 callback_data="help"
             )
         ],
         [
             InlineKeyboardButton(
-                text="⭐ Отзывы",
+                text="Отзывы",
                 callback_data="reviews"
-            )
-        ],
-        [
+            ),
             InlineKeyboardButton(
-                text="💻 Наш сайт",
+                text="Сайт",
                 callback_data="website"
             )
         ]
@@ -96,7 +86,7 @@ def get_subscription_keyboard() -> InlineKeyboardMarkup:
         ],
         [
             InlineKeyboardButton(
-                text="🔙 Назад",
+                text="Назад",
                 callback_data="back"
             )
         ]
@@ -126,7 +116,7 @@ def get_cancel_keyboard() -> InlineKeyboardMarkup:
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [
             InlineKeyboardButton(
-                text="❌ Отменить",
+                text="Отменить",
                 callback_data="cancel"
             )
         ]
@@ -141,13 +131,13 @@ def get_payment_keyboard() -> InlineKeyboardMarkup:
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [
             InlineKeyboardButton(
-                text="💳 Оплатить",
+                text="Оплатить",
                 pay=True
             )
         ],
         [
             InlineKeyboardButton(
-                text="❌ Отменить",
+                text="Отменить",
                 callback_data="cancel"
             )
         ]
