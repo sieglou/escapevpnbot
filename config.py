@@ -36,12 +36,13 @@ class Config:
         
         # Настройки подписок
         if self.USE_TELEGRAM_STARS:
-            # Цены в Telegram Stars (1 Star ≈ 1-2 рубля)
+            # Цены в Telegram Stars согласно новому UI
             self.SUBSCRIPTION_PRICES = {
-                "1_month": {"price": 250, "title": "1 месяц (Премиум)", "days": 30},
-                "3_months": {"price": 600, "title": "3 месяца (Премиум)", "days": 90},
-                "6_months": {"price": 1000, "title": "6 месяцев (Премиум)", "days": 180},
-                "12_months": {"price": 1750, "title": "12 месяцев (Премиум)", "days": 365}
+                "1_month": {"price": 125, "title": "1 месяц", "days": 30},
+                "2_months": {"price": 240, "title": "2 месяца", "days": 60},
+                "3_months": {"price": 350, "title": "3 месяца", "days": 90},
+                "6_months": {"price": 700, "title": "6 месяцев", "days": 180},
+                "12_months": {"price": 1300, "title": "12 месяцев", "days": 365}
             }
         else:
             # Цены в рублях для обычных платежей

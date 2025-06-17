@@ -32,10 +32,11 @@ YouVPN is a Telegram bot service for VPN subscriptions featuring paid subscripti
 - Activity tracking and user state management
 
 ### 3. Subscription System
-- Multiple subscription tiers (1, 3, 6, 12 months)
+- Multiple subscription tiers (1, 2, 3, 6, 12 months)
 - Subscription activation and renewal
 - Expiration tracking and notifications
 - VPN connection instructions delivery
+- Integrated plan selection within VPN connection flow
 
 ### 4. Payment Processing
 - Telegram Payments integration with RUB currency
